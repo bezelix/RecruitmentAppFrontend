@@ -1,0 +1,120 @@
+.cdk-overlay-container {
+  z-index: 999 !important;
+}
+
+.cdk-overlay-pane {
+  mat-dialog-container {
+    max-height: 95vh;
+    // <------------------------  logic for display spinner before open(hidden until mat-dialog-title el. appears)  ------------------------------>
+    display: none;
+    &[aria-labelledby] {
+      display: block !important;
+    }
+    &:not(.no-dialog-spinner).dialog-spinner {
+      height: 100px !important;
+      position: relative !important;
+      width: 100px !important;
+
+      mat-dialog-container {
+        overflow: hidden;
+
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+
+        $spinner-width: 12px;
+        $spinner-color: $themecolor;
+        animation: spin 1.5s infinite !important;
+        border-color: $spinner-color $spinner-color $spinner-color transparent !important;
+        border-radius: 50% !important;
+        border-style: solid !important;
+        border-width: $spinner-width !important;
+        display: block !important;
+        height: 100px !important;
+        position: relative !important;
+        width: 100px !important;
+
+        @keyframes spin {
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        > * {
+          display: none !important;
+        }
+      }
+    }
+
+    mat-dialog-title,
+    .mat-dialog-title {
+      span {
+        color: $secondary;
+        display: block;
+        font-size: 14px;
+      }
+    }
+
+    mat-dialog-actions {
+      justify-content: flex-end;
+      margin-top: 8px;
+      position: relative;
+
+      .left {
+        left: 0;
+        position: absolute;
+        top: 0;
+      }
+
+      button {
+        margin: 0 16px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .close-button {
+      float: right;
+      right: -24px;
+      top: -24px;
+
+      .close-icon {
+        transition: 1s ease-in-out;
+      }
+
+      .close-icon:hover {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &.confirm-dialog {
+    width: 50vw !important;
+    min-width: auto !important;
+
+    .mat-dialog-actions {
+      justify-content: center;
+    }
+  }
+
+  div.mat-autocomplete-panel {
+    position: fixed;
+    left: 0;
+
+    mat-option {
+      overflow: visible !important;
+      .mat-option-text {
+        overflow: visible !important;
+      }
+    }
+  }
+}
+
+.mat-dialog-backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}

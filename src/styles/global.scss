@@ -1,0 +1,21 @@
+@import 'variables.scss';
+@import './mixins.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+}
+
+mat-spinner {
+  margin: 0 auto;
+}
+
+.cal-event-title {
+  color: black!important;
+}
+
+.mat-radio-label-content {
+  white-space: normal;
+}

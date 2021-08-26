@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IsLoggedDirective } from './directives/isLogged.directive';
+import { MaterialModule } from './material-module/material.module';
 
 
 
@@ -9,10 +10,12 @@ import { IsLoggedDirective } from './directives/isLogged.directive';
     IsLoggedDirective
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
   ],
   exports: [
-    IsLoggedDirective
+    IsLoggedDirective,
+    MaterialModule,
   ]
 })
 export class SharedModule { }
