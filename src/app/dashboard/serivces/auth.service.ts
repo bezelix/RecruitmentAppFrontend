@@ -22,6 +22,11 @@ export class AuthService implements OnDestroy {
         tap((user) => (this.authUser = user)),
       )
       .subscribe();
+
+    // this.authUser$.next({
+    //   id: 1,
+    //   name: 'test'
+    // });
   }
 
   register(
