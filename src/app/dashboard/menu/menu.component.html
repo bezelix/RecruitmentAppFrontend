@@ -1,8 +1,23 @@
-<div class="container">
-  <mat-toolbar color="primary">
-    <span >My Application</span>
-  </mat-toolbar>
+<mat-toolbar class="container" color="primary">
+  <div class="logoContainer">Recruitment App</div>
 
-  <div class="span" [appIsLogged]="true">zalogowany</div>
-  <div class="span" [appIsLogged]="false">nie zalogowany</div>
+  <div class="userContainer" [appIsLogged]="true">
+    <button mat-raised-button>Wyloguj</button>
+  </div>
+  <div class="userContainer" [appIsLogged]="false">
+    <button mat-raised-button>Zaloguj</button>
+  </div>
+</mat-toolbar>
+
+<div class="tabs">
+  <div mat-tab-nav-bar>
+    <a mat-tab-link
+      #el="routerLinkActive"
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive
+      [active]="el.isActive">
+      {{link.name}}
+    </a>
+  </div>
 </div>

@@ -30,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogComponent, MAT_DIALOG_DEFAULT_OPTIONS_VALUES } from './dialog/dialog.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [DialogComponent],
@@ -37,6 +38,7 @@ import { DialogComponent, MAT_DIALOG_DEFAULT_OPTIONS_VALUES } from './dialog/dia
     CommonModule,
     DragDropModule,
     MatAutocompleteModule,
+    MatTabsModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -72,6 +74,7 @@ import { DialogComponent, MAT_DIALOG_DEFAULT_OPTIONS_VALUES } from './dialog/dia
     DragDropModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatTabsModule,
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
