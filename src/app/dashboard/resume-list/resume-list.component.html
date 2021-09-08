@@ -1,1 +1,19 @@
-<p>resume-list works!</p>
+<div class="container">
+  <div class="header">
+    <div class="title">
+      Kandydaci
+    </div>
+  </div>
+
+  <div class="list" *ngIf="(resumes$|async) as resumes; else loader">
+    <div class="resume" *ngFor="let resume of resumes">
+      {{resume.name}}
+      test
+    </div>
+  </div>
+</div>
+
+
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>
