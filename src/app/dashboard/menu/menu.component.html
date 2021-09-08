@@ -4,7 +4,7 @@
   <div class="userContainer" [appIsLogged]="true">
     <button mat-raised-button>Wyloguj</button>
   </div>
-  <div class="userContainer" [appIsLogged]="false">
+  <div class="userContainer" [appIsLogged]="false" (click)="login()">
     <button mat-raised-button>Zaloguj</button>
   </div>
 </mat-toolbar>

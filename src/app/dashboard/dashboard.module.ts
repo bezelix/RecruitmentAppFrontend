@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ResumeListComponent } from './resume-list/resume-list.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginPopupComponent } from './modals/login-popup/login-popup.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ProfileComponent } from './profile/profile.component';
     MenuComponent,
     HomeComponent,
     ResumeListComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginPopupComponent
   ],
   imports: [
     DashboardRoutingModule,

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 import { catchError, distinctUntilChanged, map, takeUntil, tap } from 'rxjs/operators';
 import { UserModel } from 'src/app/shared/models/profile.model';
+import { RoleModel } from 'src/app/shared/models/Role.model';
+import { environment } from 'src/environments/environment';
 
 const LS_TOKEN_KEY = 'token';
 
@@ -47,9 +49,17 @@ export class AuthService implements OnDestroy {
     //   .pipe();
   }
 
+  getRoles(): Observable<RoleModel> {
+    return this.http
+      .get<RoleModel>(`${environment.apiUrl}account/role`)
+      .pipe(
+        tap((response) => console.log(response)),
+      );
+  }
+
   login(email: string, password: string): Observable<string> {
     return this.http
-      .post<string>('login', {
+      .post<string>(`${environment.apiUrl}account/login`, {
         email,
         password,
       })

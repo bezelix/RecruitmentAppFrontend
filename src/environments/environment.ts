@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://a585-185-203-253-139.ngrok.io'
+  apiUrl: 'https://myrecruitmentapi.azurewebsites.net/api/'
 };
 
 /*
