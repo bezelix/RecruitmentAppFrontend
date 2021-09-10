@@ -14,4 +14,10 @@ export class AuthPopupComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  close(data: any) {
+    console.log(data);
+
+    this.dialogRef.close(data);
+  }
 }

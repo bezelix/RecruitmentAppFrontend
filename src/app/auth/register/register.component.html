@@ -12,6 +12,8 @@
         [formControl]="emailCtrl"
         placeholder="Email"
       >
+      <mat-error *ngIf="emailCtrl.errors?.required">Email is required</mat-error>
+      <mat-error *ngIf="emailCtrl.errors?.email">Email is invalid!</mat-error>
     </mat-form-field>
 
     <mat-form-field
@@ -20,11 +22,13 @@
     >
       <mat-label>Password</mat-label>
       <input
-        type="email"
+        type="password"
         matInput
         [formControl]="passwordCtrl"
         placeholder="Password"
       >
+      <mat-error *ngIf="passwordCtrl.errors?.required">Password is required</mat-error>
+      <mat-error *ngIf="passwordCtrl.errors?.minlength">Password is too short</mat-error>
     </mat-form-field>
 
     <mat-form-field
@@ -38,6 +42,8 @@
         [formControl]="passwordCtrl"
         placeholder="Password"
       >
+      <mat-error *ngIf="passwordCtrl.errors?.required">Password is required</mat-error>
+      <mat-error *ngIf="passwordCtrl.errors?.minlength">Password is too short</mat-error>
     </mat-form-field>
   </form>
 

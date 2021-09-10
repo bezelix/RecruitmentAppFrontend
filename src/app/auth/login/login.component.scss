@@ -6,6 +6,9 @@
   form{
     display: flex;
     flex-flow: column;
+    mat-form-field{
+      margin-bottom: 10px;
+    }
   }
   .btnContainer{
     display: flex;

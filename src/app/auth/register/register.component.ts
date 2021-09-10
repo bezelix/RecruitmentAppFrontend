@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { AuthPopupComponent } from 'src/app/dashboard/modals/auth-popup/auth-popup.component';
 import { AuthService } from 'src/app/dashboard/serivces/auth.service';
 
 @Component({
@@ -13,13 +11,14 @@ export class RegisterComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
   get emailCtrl() { return this.form.get('email') as FormControl; }
   get passwordCtrl() { return this.form.get('password') as FormControl; }
+  get confirmPasswordCtrl() { return this.form.get('confirmPassword') as FormControl; }
+  @Output() registered = new EventEmitter();
   constructor(
     private authService: AuthService,
-    public dialogRef: MatDialogRef<AuthPopupComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: ,
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +29,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.authService.login(this.emailCtrl.value, this.passwordCtrl.value).subscribe(token => this.dialogRef.close(token));
+    this.authService.login(this.emailCtrl.value, this.passwordCtrl.value).subscribe(token => this.registered.emit(token));
   }
 
 }

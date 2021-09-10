@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { AuthPopupComponent } from 'src/app/dashboard/modals/auth-popup/auth-popup.component';
 import { AuthService } from 'src/app/dashboard/serivces/auth.service';
 
 @Component({
@@ -16,10 +14,9 @@ export class LoginComponent implements OnInit {
   });
   get emailCtrl() { return this.form.get('email') as FormControl; }
   get passwordCtrl() { return this.form.get('password') as FormControl; }
+  @Output() logged = new EventEmitter();
   constructor(
     private authService: AuthService,
-    public dialogRef: MatDialogRef<AuthPopupComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: ,
   ) { }
 
   ngOnInit(): void {
@@ -27,10 +24,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     if(this.form.invalid) {
+      console.log(this.passwordCtrl.errors);
+
       return;
     }
 
-    this.authService.login(this.emailCtrl.value, this.passwordCtrl.value).subscribe(token => this.dialogRef.close(token));
+    this.authService.login(this.emailCtrl.value, this.passwordCtrl.value).subscribe(token => this.logged.emit(token));
   }
 
 }
