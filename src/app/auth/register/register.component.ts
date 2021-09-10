@@ -1,5 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
+import { throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/dashboard/serivces/auth.service';
 
 @Component({
@@ -12,24 +16,48 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(3)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    role: new FormControl(null, [Validators.required]),
   });
+  roles$ = this.authService.getRoles().pipe(
+    tap(roles => this.roleCtrl.setValue(roles[0].id)),
+  );
   get emailCtrl() { return this.form.get('email') as FormControl; }
   get passwordCtrl() { return this.form.get('password') as FormControl; }
   get confirmPasswordCtrl() { return this.form.get('confirmPassword') as FormControl; }
+  get roleCtrl() { return this.form.get('role') as FormControl; }
+  locked = false;
   @Output() registered = new EventEmitter();
   constructor(
     private authService: AuthService,
+    public notifierService: NotifierService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  login() {
+  register() {
+    this.form.markAllAsTouched();
     if(this.form.invalid) {
+      console.log(this.form);
+
+      this.notifierService.notify('error', 'Invalid form!');
       return;
     }
 
-    this.authService.login(this.emailCtrl.value, this.passwordCtrl.value).subscribe(token => this.registered.emit(token));
+    this.locked = true;
+    this.authService.register(this.emailCtrl.value, this.passwordCtrl.value).pipe(
+      tap(
+        () => this.locked = false,
+        () => this.locked = false,
+      ),
+      tap(console.log),
+      catchError((e) => this.catchError(e)),
+    ).subscribe(token => this.registered.emit(token));
   }
 
+  private catchError(error: HttpErrorResponse) {
+    this.notifierService.notify('error', error.error)
+
+    return throwError(error.error);
+  }
 }

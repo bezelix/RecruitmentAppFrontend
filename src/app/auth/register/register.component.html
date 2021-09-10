@@ -37,22 +37,30 @@
     >
       <mat-label>Repeat Password</mat-label>
       <input
-        type="email"
+        type="password"
         matInput
-        [formControl]="passwordCtrl"
+        [formControl]="confirmPasswordCtrl"
         placeholder="Password"
       >
-      <mat-error *ngIf="passwordCtrl.errors?.required">Password is required</mat-error>
-      <mat-error *ngIf="passwordCtrl.errors?.minlength">Password is too short</mat-error>
+      <mat-error *ngIf="confirmPasswordCtrl.errors?.required">Password is required</mat-error>
+      <mat-error *ngIf="confirmPasswordCtrl.errors?.minlength">Password is too short</mat-error>
     </mat-form-field>
+
+    <mat-radio-group [formControl]="roleCtrl" name="role">
+      <mat-radio-button
+        *ngFor="let role of roles$|async"
+        [value]="role.id"
+      >{{role.name}}</mat-radio-button>
+    </mat-radio-group>
   </form>
 
   <div class="btnContainer">
     <button
       mat-raised-button
-      (click)="login()"
+      [disabled]="locked"
+      (click)="register()"
       color="primary"
       cdkFocusInitial
-    >Login</button>
+    >Register</button>
   </div>
 </div>

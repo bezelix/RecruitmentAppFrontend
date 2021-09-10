@@ -35,6 +35,7 @@
   <div class="btnContainer">
     <button
       mat-raised-button
+      [disabled]="locked"
       (click)="login()"
       color="primary"
       cdkFocusInitial
