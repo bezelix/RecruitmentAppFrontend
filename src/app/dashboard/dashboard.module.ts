@@ -6,7 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ResumeListComponent } from './resume-list/resume-list.component';
 import { ProfileComponent } from './profile/profile.component';
-import { LoginPopupComponent } from './modals/login-popup/login-popup.component';
+import { AuthPopupComponent } from './modals/auth-popup/auth-popup.component';
+import { AuthModule } from '../auth/auth.module';
 
 
 @NgModule({
@@ -16,11 +17,12 @@ import { LoginPopupComponent } from './modals/login-popup/login-popup.component'
     HomeComponent,
     ResumeListComponent,
     ProfileComponent,
-    LoginPopupComponent
+    AuthPopupComponent
   ],
   imports: [
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
+    AuthModule
   ]
 })
 export class DashboardModule { }

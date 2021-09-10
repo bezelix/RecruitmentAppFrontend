@@ -1,0 +1,9 @@
+mat-tab-group{
+  width: 400px;
+  min-width: 50vw;
+}
+::ng-deep{
+  .mat-tab-label{
+    flex: 1;
+  }
+}

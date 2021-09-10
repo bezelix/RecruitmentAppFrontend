@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginPopupComponent } from '../modals/login-popup/login-popup.component';
+import { AuthPopupComponent } from '../modals/auth-popup/auth-popup.component';
 
 interface navLink {
   name: string,
@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
   }
 
   login() {
-    this.dialog.open(LoginPopupComponent).afterClosed().subscribe(res => console.log(res));
+    this.dialog.open(AuthPopupComponent).afterClosed().subscribe(res => console.log(res));
 
   }
 

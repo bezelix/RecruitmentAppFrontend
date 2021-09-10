@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="container">
+  <form [formGroup]="form">
+
+    <mat-form-field
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        [formControl]="emailCtrl"
+        placeholder="Email"
+      >
+    </mat-form-field>
+
+    <mat-form-field
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Password</mat-label>
+      <input
+        type="email"
+        matInput
+        [formControl]="passwordCtrl"
+        placeholder="Password"
+      >
+    </mat-form-field>
+  </form>
+
+  <div class="btnContainer">
+    <button
+      mat-raised-button
+      (click)="login()"
+      color="primary"
+      cdkFocusInitial
+    >Login</button>
+  </div>
+</div>
