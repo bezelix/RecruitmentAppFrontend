@@ -8,6 +8,7 @@ import { ResumeListComponent } from './resume-list/resume-list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthPopupComponent } from './modals/auth-popup/auth-popup.component';
 import { AuthModule } from '../auth/auth.module';
+import { ResumeComponent } from './resume/resume.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AuthModule } from '../auth/auth.module';
     HomeComponent,
     ResumeListComponent,
     ProfileComponent,
-    AuthPopupComponent
+    AuthPopupComponent,
+    ResumeComponent
   ],
   imports: [
     DashboardRoutingModule,

@@ -1,0 +1,37 @@
+.emptyContainer {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+
+  .main {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .subText {
+    font-size: 14px;
+  }
+}
+
+mat-spinner{
+  margin-top: 40px;
+}
+
+mat-list-item{
+  .head{
+    margin-bottom: 2px;
+    display: flex;
+    align-items: flex-end;
+
+    .name{
+      font-size: 17px;
+      font-weight: 500;
+      margin-right: 5px;
+    }
+    .city{
+      font-size: 12px;
+      line-height: 17px;
+      opacity: 0.9;
+    }
+  }
+}

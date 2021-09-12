@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
 import { ResumeModel } from 'src/app/shared/models/Resume.model';
 import { environment } from 'src/environments/environment';
 
@@ -13,9 +12,34 @@ export class ResumeService {
   constructor(private http: HttpClient) {
   }
 
-  get(): Observable<ResumeModel> {
+  get(): Observable<ResumeModel[]> {
+    return of([
+      {
+        id: 0,
+        name: 'Arkadiusz Łatka',
+        avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
+        dateOfBirth: new Date(),
+        city: 'Rzeszów',
+      },
+      {
+        id: 1,
+        name: 'Adam Maciuszek',
+        avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
+        dateOfBirth: new Date(),
+        city: 'Kraków',
+      },
+      {
+        id: 2,
+        name: 'Darek Psikuta',
+        avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
+        dateOfBirth: new Date(),
+        city: 'Warszawa',
+      },
+    ]).pipe(
+      delay(500)
+    );
     return this.http
-      .get<ResumeModel>(`${environment.apiUrl}resume`)
+      .get<ResumeModel[]>(`${environment.apiUrl}resume`)
       .pipe(
         tap(console.log)
       );

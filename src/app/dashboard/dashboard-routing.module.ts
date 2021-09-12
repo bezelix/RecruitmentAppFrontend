@@ -4,6 +4,7 @@ import { ContainerComponent } from './container/container.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResumeListComponent } from './resume-list/resume-list.component';
+import { ResumeComponent } from './resume/resume.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,11 @@ const routes: Routes = [
     children: [
       {
         path: 'resumes',
-        component: ResumeListComponent
+        component: ResumeListComponent,
+      },
+      {
+        path: 'resumes/:id',
+        component: ResumeComponent,
       },
       {
         path: 'profile',
