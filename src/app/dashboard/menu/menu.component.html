@@ -1,7 +1,7 @@
 <mat-toolbar class="container" color="primary">
-  <div class="logoContainer">Recruitment App</div>
+  <div class="logoContainer" [routerLink]="['/', 'dashboard', 'resumes']" >Recruitment App</div>
 
-  <div class="userContainer" [appIsLogged]="true">
+  <div class="userContainer" [appIsLogged]="true" (click)="logout()">
     <button mat-raised-button>Wyloguj</button>
   </div>
   <div class="userContainer" [appIsLogged]="false" (click)="login()">
@@ -9,7 +9,7 @@
   </div>
 </mat-toolbar>
 
-<div class="tabs">
+<!-- <div class="tabs">
   <div mat-tab-nav-bar>
     <a mat-tab-link
       #el="routerLinkActive"
@@ -20,4 +20,4 @@
       {{link.name}}
     </a>
   </div>
-</div>
+</div> -->

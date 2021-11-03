@@ -3,6 +3,9 @@ mat-toolbar{
   flex-flow: row;
   justify-content: space-between;
 
+  .logoContainer{
+    cursor: pointer;
+  }
 
   .tabs{
   }

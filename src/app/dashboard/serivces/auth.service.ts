@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { pluck, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { UserModel } from 'src/app/shared/models/profile.model';
 import { RoleModel } from 'src/app/shared/models/Role.model';
 import { environment } from 'src/environments/environment';
@@ -50,23 +50,30 @@ export class AuthService implements OnDestroy {
       );
   }
 
-  login(email: string, password: string): Observable<string> {
+  getUser(): Observable<UserModel> {
     return this.http
-      .post<string>(`${environment.apiUrl}account/login`, {
+      .get<UserModel>(`${environment.apiUrl}account/user`)
+      .pipe(
+        tap((response) => console.log(response)),
+        tap((user) => this.authUser$.next(user)),
+      );
+  }
+
+  login(email: string, password: string): ReturnType<AuthService["getUser"]> {
+    return this.http
+      .post<{token: string}>(`${environment.apiUrl}account/login`, {
         email,
         password,
       })
       .pipe(
-        tap((response) => localStorage.setItem(LS_TOKEN_KEY, response)),
+        tap((response) => localStorage.setItem(LS_TOKEN_KEY, response.token)),
+        switchMap(() => this.getUser()),
       );
   }
 
   logout() {
-    return of();
-    // this.http
-    //   .post(ApiUrls.logout, {})
-    //   .pipe(tap(() => (clearAll ? localStorage.clear() : localStorage.removeItem(LS_TOKEN_KEY))))
-    //   .subscribe(() => this.router.navigate(['']));
+    localStorage.removeItem('token');
+    this.authUser$.next(null);
   }
 
   ngOnDestroy(): void {

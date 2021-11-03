@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthPopupComponent } from '../modals/auth-popup/auth-popup.component';
+import { AuthService } from '../serivces/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -23,6 +24,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   ]
   constructor(
     private dialog: MatDialog,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-
+    this.authService.logout();
   }
 
   ngOnDestroy(): void {

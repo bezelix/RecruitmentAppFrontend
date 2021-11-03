@@ -13,6 +13,14 @@
   }
 }
 
+.header {
+  padding: 10px;
+  .title{
+    font-size: 17px;
+    font-weight: 500;
+  }
+}
+
 mat-spinner{
   margin-top: 40px;
 }

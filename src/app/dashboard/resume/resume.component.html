@@ -1,1 +1,9 @@
-<p>resume works!</p>
+<mat-card>
+  <div class="container" *ngIf="(resume$|async) as resume">
+    <div class="header">
+      <img [src]="resume.avatar">
+      <div class="name">{{resume.name}}</div>
+    </div>
+
+  </div>
+</mat-card>

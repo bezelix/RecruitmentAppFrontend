@@ -1,9 +1,12 @@
+<div class="filtersContainer">
+  <app-resume-filter></app-resume-filter>
+</div>
 <div class="container">
-  <!-- <div class="header">
+  <div class="header">
     <div class="title">
-      Kandydaci
+      List of available resumes
     </div>
-  </div> -->
+  </div>
   <mat-nav-list *ngIf="(resumes$|async) as resumes; else loader" >
     <mat-list-item *ngFor="let resume of resumes" [routerLink]="[resume.id]">
       <img matListAvatar [src]="resume.avatar" />
@@ -16,7 +19,15 @@
           {{ resume.city }}
         </div>
       </div>
-      <div mat-line class="details">tekst</div>
+      <div mat-line class="details">
+        <div class="description">
+          {{ resume.description }}
+        </div>
+        <div class="skillsContainer">
+          <div class="skill" *ngFor="let skill of resume.skills">{{skill}}</div>
+        </div>
+      </div>
+
       <mat-divider></mat-divider>
     </mat-list-item>
 

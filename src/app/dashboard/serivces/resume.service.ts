@@ -5,6 +5,36 @@ import { delay, tap } from 'rxjs/operators';
 import { ResumeModel } from 'src/app/shared/models/Resume.model';
 import { environment } from 'src/environments/environment';
 
+const resumes = [
+  {
+    id: 0,
+    name: 'Arkadiusz Łatka',
+    avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
+    dateOfBirth: new Date(),
+    city: 'Rzeszów',
+    skills: ['c#'],
+    description: 'Jestem bardzo zmotywowanym programistą',
+  },
+  {
+    id: 1,
+    name: 'Adam Maciuszek',
+    avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
+    dateOfBirth: new Date(),
+    city: 'Kraków',
+    skills: ['Javascript', 'Angular'],
+    description: '',
+  },
+  {
+    id: 2,
+    name: 'Darek Psikuta',
+    avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
+    dateOfBirth: new Date(),
+    city: 'Warszawa',
+    skills: [],
+    description: 'Nie chce mi sie uzupełniać opisu',
+  },
+];
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,29 +43,7 @@ export class ResumeService {
   }
 
   get(): Observable<ResumeModel[]> {
-    return of([
-      {
-        id: 0,
-        name: 'Arkadiusz Łatka',
-        avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
-        dateOfBirth: new Date(),
-        city: 'Rzeszów',
-      },
-      {
-        id: 1,
-        name: 'Adam Maciuszek',
-        avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
-        dateOfBirth: new Date(),
-        city: 'Kraków',
-      },
-      {
-        id: 2,
-        name: 'Darek Psikuta',
-        avatar: 'https://mdbootstrap.com/img/new/avatars/2.jpg',
-        dateOfBirth: new Date(),
-        city: 'Warszawa',
-      },
-    ]).pipe(
+    return of(resumes).pipe(
       delay(500)
     );
     return this.http
@@ -46,6 +54,9 @@ export class ResumeService {
   }
 
   getSingle(id: number): Observable<ResumeModel> {
+    return of(resumes.find(e => e.id === id)).pipe(
+      delay(500)
+    );
     return this.http
       .get<ResumeModel>(`${environment.apiUrl}resume/${id}`)
       .pipe(

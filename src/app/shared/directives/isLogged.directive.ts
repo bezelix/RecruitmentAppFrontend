@@ -1,24 +1,39 @@
-import { Directive, ElementRef, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { startWith, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/dashboard/serivces/auth.service';
 
 @Directive({
   selector: '[appIsLogged]'
 })
-export class IsLoggedDirective implements OnInit {
+export class IsLoggedDirective implements OnInit, OnDestroy {
   @Input('appIsLogged') IsLogged: boolean;
+  onDestroy$ = new Subject();
+
   constructor(
     private AuthService: AuthService,
     private elementRef: ElementRef,
   ) { }
 
   ngOnInit(): void {
-    console.log({
-      IsLogged: this.IsLogged,
-      auth: !!this.AuthService.authUser
-    });
+    this.AuthService.authUser$.pipe(
+      startWith(this.AuthService.authUser),
+      takeUntil(this.onDestroy$),
+    ).subscribe(() => this.check());
+  }
 
-    if(!!this.AuthService.authUser !== this.IsLogged) {
-      this.elementRef.nativeElement.style.display = 'none';
+  private check() {
+    const className = 'hidden';
+
+    if(!!localStorage.getItem('token') !== this.IsLogged) {
+      this.elementRef.nativeElement.classList.add(className);
+    } else if (this.elementRef.nativeElement.classList.contains(className)) {
+      this.elementRef.nativeElement.classList.remove(className);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }

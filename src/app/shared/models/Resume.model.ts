@@ -4,4 +4,6 @@ export class ResumeModel {
   avatar: string;
   dateOfBirth: Date;
   city: string;
+  description: string;
+  skills: string[];
 }

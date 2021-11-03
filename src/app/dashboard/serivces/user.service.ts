@@ -18,15 +18,4 @@ export class UserService {
       })
       .pipe(map((res) => res.data));
   }
-
-  profile(): Observable<UserModel> {
-    return of({
-      id: 1,
-      name: 'test'
-    });
-    return this.http.get<UserModel>('ApiUrls.profile').pipe(
-      tap((res) => this.authService.authUser$.next(res)),
-      catchError((error: HttpErrorResponse) => throwError(error.error)),
-    );
-  }
 }

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="header">
+    Customize resume searching
+    <mat-form-field>
+      <mat-label>Name or Surname</mat-label>
+      <input
+        matInput
+        [formControl]="nameCtrl"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <mat-select [formControl]="locationCtrl">
+        <mat-option *ngFor="let location of locations" [value]="location">
+          {{location.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="skills">
+    <div class="skill" *ngFor="let skill of skills">
+      <div class="switch" [ngClass]="{active: skillsCtrl.values && skillsCtrl.values.include(skill)}"></div>
+      {{skill.name}}
+    </div>
+  </div>
+</div>
+<div class="activeFilter">
+
+</div>
