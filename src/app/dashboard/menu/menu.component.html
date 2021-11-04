@@ -1,11 +1,12 @@
 <mat-toolbar class="container" color="primary">
   <div class="logoContainer" [routerLink]="['/', 'dashboard', 'resumes']" >Recruitment App</div>
 
-  <div class="userContainer" [appIsLogged]="true" (click)="logout()">
-    <button mat-raised-button>Wyloguj</button>
-  </div>
-  <div class="userContainer" [appIsLogged]="false" (click)="login()">
-    <button mat-raised-button>Zaloguj</button>
+  <div class="userContainer">
+    <div [appIsLogged]="true">
+      <button mat-raised-button [routerLink]="['/', 'dashboard', 'profile']">Moje Konto</button>
+      <button mat-raised-button (click)="logout()">Wyloguj</button>
+    </div>
+    <button mat-raised-button  [appIsLogged]="false" (click)="login()">Zaloguj</button>
   </div>
 </mat-toolbar>
 

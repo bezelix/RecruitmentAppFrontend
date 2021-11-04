@@ -43,20 +43,14 @@ export class ResumeService {
   }
 
   get(): Observable<ResumeModel[]> {
-    return of(resumes).pipe(
-      delay(500)
-    );
     return this.http
-      .get<ResumeModel[]>(`${environment.apiUrl}resume`)
+      .get<ResumeModel[]>(`${environment.apiUrl}resume?PageSize=5&PageNumber=1`)
       .pipe(
         tap(console.log)
       );
   }
 
   getSingle(id: number): Observable<ResumeModel> {
-    return of(resumes.find(e => e.id === id)).pipe(
-      delay(500)
-    );
     return this.http
       .get<ResumeModel>(`${environment.apiUrl}resume/${id}`)
       .pipe(

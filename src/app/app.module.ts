@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifierModule } from 'angular-notifier';
 import { AuthIntercecptorService } from './interceptors/auth-interceptor.service';
+import { ErrorIntercecptorService } from './interceptors/error-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -31,6 +32,11 @@ import { AuthIntercecptorService } from './interceptors/auth-interceptor.service
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntercecptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorIntercecptorService,
       multi: true,
     },
   ],

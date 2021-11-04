@@ -7,7 +7,7 @@
       List of available resumes
     </div>
   </div>
-  <mat-nav-list *ngIf="(resumes$|async) as resumes; else loader" >
+  <mat-nav-list *ngIf="(resumes$|async)?.items as resumes; else loader" >
     <mat-list-item *ngFor="let resume of resumes" [routerLink]="[resume.id]">
       <img matListAvatar [src]="resume.avatar" />
 
@@ -38,7 +38,7 @@
 <ng-template #empty>
   <div class="emptyContainer">
     <div class="main">We don't have any resumes yet!</div>
-    <div class="subText">Please try again later</div>
+    <div class="subText">Please try again later or change filters.</div>
   </div>
 </ng-template>
 

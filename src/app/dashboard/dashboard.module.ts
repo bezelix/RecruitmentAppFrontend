@@ -21,7 +21,7 @@ import { ResumeFilterComponent } from './resume-list/resume-filter/resume-filter
     ProfileComponent,
     AuthPopupComponent,
     ResumeComponent,
-    ResumeFilterComponent
+    ResumeFilterComponent,
   ],
   imports: [
     DashboardRoutingModule,

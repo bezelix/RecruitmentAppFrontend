@@ -5,6 +5,8 @@ import { NotifierService } from 'angular-notifier';
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/dashboard/serivces/auth.service';
+import { ErrorHandlingService } from 'src/app/dashboard/serivces/errorHandling.service';
+import { ErrorModel } from 'src/app/shared/models/error.model';
 
 @Component({
   selector: 'app-register',
@@ -30,6 +32,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public notifierService: NotifierService,
+    private errorHandlingService: ErrorHandlingService,
   ) { }
 
   ngOnInit(): void {
@@ -50,14 +53,7 @@ export class RegisterComponent implements OnInit {
         () => this.locked = false,
         () => this.locked = false,
       ),
-      tap(console.log),
-      catchError((e) => this.catchError(e)),
+      catchError((e) => this.errorHandlingService.handleValidationError(e, this.form)),
     ).subscribe(token => this.registered.emit(token));
-  }
-
-  private catchError(error: HttpErrorResponse) {
-    this.notifierService.notify('error', error.error)
-
-    return throwError(error.error);
   }
 }
