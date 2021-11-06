@@ -1,7 +1,48 @@
 <mat-card color="primary">
   <mat-card-title>My Resumes</mat-card-title>
+  <mat-card-content>
+    <ng-container *ngIf="(resumesIsLoading$|async)">
+      <mat-spinner></mat-spinner>
+    </ng-container>
+
+    <ng-container *ngIf="(resumes$|async) as resumes">
+      <mat-list role="list" *ngIf="resumes.items; else emptyResumes">
+        <mat-list-item role="listitem" *ngFor="let resume of resumes.items">{{resume.name}}</mat-list-item>
+      </mat-list>
+    </ng-container>
+
+    <ng-template #emptyResumes>
+      <div class="emptyContainer">
+        No Resumes to display, please add new one!
+
+        <button mat-raised-button  color="primary" [routerLink]="['/', 'dashboard', 'profile', 'resume']">Add new Resume</button>
+      </div>
+    </ng-template>
+  </mat-card-content>
 </mat-card>
 
 <mat-card>
   <mat-card-title>My Experiences</mat-card-title>
+
+  <mat-card-content>
+    <ng-container *ngIf="(experiencesIsLoading$|async)">
+      <mat-spinner></mat-spinner>
+    </ng-container>
+
+    <ng-container *ngIf="(experiences$|async) as experiences">
+      <mat-list role="list" *ngIf="experiences.items; else emptyExp">
+        <mat-list-item role="listitem" *ngFor="let experience of experiences.items">{{experience.name}}</mat-list-item>
+      </mat-list>
+    </ng-container>
+
+    <ng-template #emptyExp>
+      <div class="emptyContainer">
+        No experience to display, please add new one!
+
+        <button mat-raised-button  color="primary" [routerLink]="['/', 'dashboard', 'profile', 'experience']">Add new Experience</button>
+      </div>
+    </ng-template>
+
+  </mat-card-content>
+
 </mat-card>
