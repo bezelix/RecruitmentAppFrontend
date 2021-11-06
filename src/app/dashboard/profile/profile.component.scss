@@ -18,3 +18,10 @@ mat-list{
     margin-top: 10px;
   }
 }
+
+mat-card-title{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+}

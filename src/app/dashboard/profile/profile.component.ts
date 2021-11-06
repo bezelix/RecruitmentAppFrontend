@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { delay, share, tap } from 'rxjs/operators';
 import { ExperienceModel } from 'src/app/shared/models/Experience.model';
+import { ResponseWithPaginationModel } from 'src/app/shared/models/Response.model';
 import { ResumeModel } from 'src/app/shared/models/Resume.model';
 import { ExperienceService } from '../serivces/experience.service';
 import { ResumeService } from '../serivces/resume.service';
@@ -13,7 +14,7 @@ import { ResumeService } from '../serivces/resume.service';
 })
 export class ProfileComponent implements OnInit {
 
-  resumes$: Observable<ResumeModel[]> = this.resumesService.get().pipe(
+  resumes$: Observable<ResponseWithPaginationModel<ResumeModel>> = this.resumesService.get().pipe(
     tap(() => this.resumesIsLoading$.next(false)),
     share(),
   );

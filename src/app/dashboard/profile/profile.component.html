@@ -22,7 +22,10 @@
 </mat-card>
 
 <mat-card>
-  <mat-card-title>My Experiences</mat-card-title>
+  <mat-card-title>
+    My Experiences
+    <button mat-raised-button  color="primary" [routerLink]="['/', 'dashboard', 'profile', 'experience']">Add new</button>
+  </mat-card-title>
 
   <mat-card-content>
     <ng-container *ngIf="(experiencesIsLoading$|async)">
@@ -30,8 +33,14 @@
     </ng-container>
 
     <ng-container *ngIf="(experiences$|async) as experiences">
-      <mat-list role="list" *ngIf="experiences.items; else emptyExp">
-        <mat-list-item role="listitem" *ngFor="let experience of experiences.items">{{experience.name}}</mat-list-item>
+      <mat-list role="list" *ngIf="experiences; else emptyExp">
+        <mat-list-item role="listitem" *ngFor="let experience of experiences">
+          <h2 matLine>Company: {{experience.name}} </h2>
+          <p matLine>
+            <span> Since: {{experience.startDate | date: 'dd-MM-YYYY'}} </span>
+            <span> To: {{experience.endDate | date: 'dd-MM-YYYY'}} </span>
+          </p>
+        </mat-list-item>
       </mat-list>
     </ng-container>
 

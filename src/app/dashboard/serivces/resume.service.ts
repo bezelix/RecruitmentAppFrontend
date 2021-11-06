@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ResponseWithPaginationModel } from 'src/app/shared/models/Response.model';
 import { ResumeModel } from 'src/app/shared/models/Resume.model';
 import { environment } from 'src/environments/environment';
 
@@ -13,7 +14,7 @@ export class ResumeService {
   constructor(private http: HttpClient) {
   }
 
-  get(): Observable<ResumeModel[]> {
+  get(): Observable<ResponseWithPaginationModel<ResumeModel>> {
     return this.http
       .get<ResumeModel[]>(`${environment.apiUrl}resume?PageSize=5&PageNumber=1`)
       .pipe(

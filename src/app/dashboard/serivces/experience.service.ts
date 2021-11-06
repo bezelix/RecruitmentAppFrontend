@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ExperienceModel } from 'src/app/shared/models/Experience.model';
+import { ResponseWithPaginationModel } from 'src/app/shared/models/Response.model';
 import { ResumeModel } from 'src/app/shared/models/Resume.model';
 import { environment } from 'src/environments/environment';
 
@@ -55,7 +56,10 @@ export class ExperienceService {
 
   attach(experience: ExperienceModel, resume: ResumeModel): Observable<void> {
     return this.http
-      .get<void>(`${environment.apiUrl}experience`)
+      .post<void>(`${environment.apiUrl}resume/AttachExperience`, {
+        resumeId: resume.id,
+        experienceId: experience.id
+      })
       .pipe(
         tap(console.log)
       );
@@ -63,7 +67,10 @@ export class ExperienceService {
 
   detach(experience: ExperienceModel, resume: ResumeModel): Observable<void> {
     return this.http
-      .get<void>(`${environment.apiUrl}experience`)
+      .post<void>(`${environment.apiUrl}resume/DetachExperience`, {
+        resumeId: resume.id,
+        experienceId: experience.id
+      })
       .pipe(
         tap(console.log)
       );
