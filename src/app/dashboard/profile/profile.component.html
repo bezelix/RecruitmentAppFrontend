@@ -1,5 +1,8 @@
 <mat-card color="primary">
-  <mat-card-title>My Resumes</mat-card-title>
+  <mat-card-title>
+    My Resumes
+    <button mat-raised-button  color="primary" [routerLink]="['/', 'dashboard', 'profile', 'resume']">Add new</button>
+  </mat-card-title>
   <mat-card-content>
     <ng-container *ngIf="(resumesIsLoading$|async)">
       <mat-spinner></mat-spinner>

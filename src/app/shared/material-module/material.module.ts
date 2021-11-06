@@ -12,7 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,8 +29,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DialogComponent, MAT_DIALOG_DEFAULT_OPTIONS_VALUES } from './dialog/dialog.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [DialogComponent],
@@ -67,6 +68,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTooltipModule,
     A11yModule,
     ReactiveFormsModule,
+    NgxMatSelectSearchModule,
   ],
   exports: [
     CommonModule,
@@ -102,6 +104,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTooltipModule,
     A11yModule,
     ReactiveFormsModule,
+    NgxMatSelectSearchModule,
   ],
   providers: [
   ],

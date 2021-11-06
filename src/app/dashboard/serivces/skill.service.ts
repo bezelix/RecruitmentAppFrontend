@@ -12,10 +12,10 @@ export class SkillService {
   constructor(private http: HttpClient) {
   }
 
-  get(name?: string): Observable<SkillModel> {
-    const params = name ? new HttpParams() : new HttpParams().set('name', name);
+  get(name?: string): Observable<SkillModel[]> {
+    const params = name && name.length ? new HttpParams().set('name', name) : new HttpParams();
     return this.http
-      .get<SkillModel>(`${environment.apiUrl}skills`, {params})
+      .get<SkillModel[]>(`${environment.apiUrl}skills`, {params})
       .pipe(
         tap(console.log)
       );
