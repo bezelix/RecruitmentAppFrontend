@@ -13,17 +13,6 @@ import { ExperienceService } from '../../serivces/experience.service';
   styleUrls: ['./add-experience.component.scss']
 })
 export class AddExperienceComponent implements OnInit {
-  fb = new FormGroup({
-    name: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    startDate: new FormControl(null, Validators.required),
-    endDate: new FormControl(null, Validators.required),
-  });
-
-  get nameCtrl() { return this.fb.get('name') as FormControl }
-  get descriptionCtrl() { return this.fb.get('description') as FormControl }
-  get startDateCtrl() { return this.fb.get('startDate') as FormControl }
-  get endDateCtrl() { return this.fb.get('endDate') as FormControl }
   constructor(
     private errorHandlingService: ErrorHandlingService,
     private experienceService: ExperienceService,
@@ -34,13 +23,9 @@ export class AddExperienceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    if(this.fb.invalid) {
-      return;
-    }
-
-    this.experienceService.save(this.fb.value).pipe(
-      catchError((e) => this.errorHandlingService.handleValidationError(e, this.fb)),
+  onSubmit(event: { experience: ExperienceModel, form: FormGroup }) {
+    this.experienceService.save(event.experience).pipe(
+      catchError((e) => this.errorHandlingService.handleValidationError(e, event.form)),
     ).subscribe(
       () => {
         this.notifierService.notify('success', 'Experience added successfully');

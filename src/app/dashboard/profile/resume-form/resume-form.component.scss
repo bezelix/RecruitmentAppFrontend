@@ -1,0 +1,17 @@
+.row{
+  display: flex;
+  flex-flow: row;
+  mat-form-field{
+    margin: 0 5px;
+    &:first-of-type{
+      margin-left: 0;
+    }
+    &:last-of-type{
+      margin-right: 5px;
+    }
+  }
+}
+button{
+  margin-left: auto;
+  display: block;
+}

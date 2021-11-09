@@ -22,6 +22,14 @@ export class ResumeService {
       );
   }
 
+  getOwnedResumes(): Observable<ResponseWithPaginationModel<ResumeModel>> {
+    return this.http
+      .get<ResumeModel[]>(`${environment.apiUrl}resume?PageSize=5&PageNumber=1`)
+      .pipe(
+        tap(console.log)
+      );
+  }
+
   getSingle(id: number): Observable<ResumeModel> {
     return this.http
       .get<ResumeModel>(`${environment.apiUrl}resume/${id}`)

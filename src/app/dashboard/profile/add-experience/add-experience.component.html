@@ -2,54 +2,7 @@
   <mat-card-title>New Experience</mat-card-title>
 
   <mat-card-content>
-
-    <form [formGroup]="fb" (ngSubmit)="onSubmit()">
-
-      <div class="row">
-        <mat-form-field>
-          <mat-label>Company Name</mat-label>
-          <input
-            matInput
-            [formControl]="nameCtrl"
-            placeholder="Company Name"
-          >
-          <mat-error *ngIf="nameCtrl.errors?.required">Company Name is required</mat-error>
-          <mat-error *ngIf="nameCtrl.errors?.apiError">{{nameCtrl.errors?.apiError}}</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Specify the time frame</mat-label>
-          <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate [formControl]="startDateCtrl" placeholder="Start date">
-            <input matEndDate [formControl]="endDateCtrl" placeholder="End date">
-          </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-
-          <mat-error *ngIf="startDateCtrl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-          <mat-error *ngIf="endDateCtrl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-          <mat-error *ngIf="startDateCtrl.errors?.apiError">{{startDateCtrl.errors?.apiError}}</mat-error>
-          <mat-error *ngIf="endDateCtrl.errors?.apiError">{{endDateCtrl.errors?.apiError}}</mat-error>
-        </mat-form-field>
-      </div>
-
-      <mat-form-field>
-        <mat-label>Description</mat-label>
-        <textarea
-          matInput
-          [formControl]="descriptionCtrl"
-          placeholder="Description"
-        ></textarea>
-        <mat-error *ngIf="descriptionCtrl.errors?.required">Description is required</mat-error>
-        <mat-error *ngIf="descriptionCtrl.errors?.apiError">{{descriptionCtrl.errors?.apiError}}</mat-error>
-      </mat-form-field>
-
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-      >Save</button>
-    </form>
+    <app-form-experience (experienceSubmitted)="onSubmit($event)"></app-form-experience>
   </mat-card-content>
 
 </mat-card>

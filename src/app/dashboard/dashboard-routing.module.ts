@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContainerComponent } from './container/container.component';
 import { AddExperienceComponent } from './profile/add-experience/add-experience.component';
 import { AddResumeComponent } from './profile/add-resume/add-resume.component';
+import { EditExperienceComponent } from './profile/edit-experience/edit-experience.component';
 import { MyResumeComponent } from './profile/my-resume/my-resume.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResumeListComponent } from './resume-list/resume-list.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
           {
             path: 'experience',
             component: AddExperienceComponent
+          },
+          {
+            path: 'experience/:id',
+            component: EditExperienceComponent,
           },
           {
             path: 'resume',

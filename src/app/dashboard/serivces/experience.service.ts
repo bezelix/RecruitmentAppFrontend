@@ -40,7 +40,7 @@ export class ExperienceService {
 
   update(experience: ExperienceModel): Observable<ExperienceModel> {
     return this.http
-      .put<ExperienceModel>(`${environment.apiUrl}experience`, {...experience})
+      .put<ExperienceModel>(`${environment.apiUrl}experience/${experience.id}`, {...experience})
       .pipe(
         tap(console.log)
       );

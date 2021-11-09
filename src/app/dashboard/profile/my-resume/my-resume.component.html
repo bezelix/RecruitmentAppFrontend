@@ -1,10 +1,10 @@
 <mat-card color="primary">
   <ng-container *ngIf="resume">
     <mat-card-title>
-      My Resume: {{resume.name}} {{resume.surname}}
-      <button mat-raised-button  color="primary" [routerLink]="['/', 'dashboard', 'profile', 'resume']">Add new</button>
+      My Resume
     </mat-card-title>
     <mat-card-content>
+      <app-resume-form (resumeSubmitted)="onSubmit($event)" [initValue]="resume"></app-resume-form>
     </mat-card-content>
   </ng-container>
   <mat-spinner *ngIf="!resume"></mat-spinner>

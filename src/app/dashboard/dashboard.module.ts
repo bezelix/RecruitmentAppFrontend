@@ -13,6 +13,9 @@ import { ResumeFilterComponent } from './resume-list/resume-filter/resume-filter
 import { AddResumeComponent } from './profile/add-resume/add-resume.component';
 import { AddExperienceComponent } from './profile/add-experience/add-experience.component';
 import { MyResumeComponent } from './profile/my-resume/my-resume.component';
+import { ResumeFormComponent } from './profile/resume-form/resume-form.component';
+import { EditExperienceComponent } from './profile/edit-experience/edit-experience.component';
+import { FormExperienceComponent } from './profile/form-experience/form-experience.component';
 
 
 @NgModule({
@@ -28,6 +31,9 @@ import { MyResumeComponent } from './profile/my-resume/my-resume.component';
     AddResumeComponent,
     AddExperienceComponent,
     MyResumeComponent,
+    ResumeFormComponent,
+    EditExperienceComponent,
+    FormExperienceComponent,
   ],
   imports: [
     DashboardRoutingModule,

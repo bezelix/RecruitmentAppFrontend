@@ -31,7 +31,7 @@ export class ErrorIntercecptorService implements HttpInterceptor {
         return throwError(error);
 
       default:
-        this.notifierService.notify('error', error.title);
+        this.notifierService.notify('error', 'Uknown error occured!');
         return throwError(error);
     }
   }

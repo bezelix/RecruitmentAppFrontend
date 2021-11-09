@@ -8,5 +8,5 @@ export class ResumeModel {
   dateOfBirth: Date;
   city: string;
   description: string;
-  skills: SkillModel[];
+  skills: any[];
 }

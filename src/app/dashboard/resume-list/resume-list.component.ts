@@ -7,7 +7,7 @@ import { ResumeService } from '../serivces/resume.service';
   styleUrls: ['./resume-list.component.scss']
 })
 export class ResumeListComponent implements OnInit {
-  resumes$ = this.resumeService.get();
+  resumes$ = this.resumeService.getOwnedResumes();
 
   constructor(
     private resumeService: ResumeService,

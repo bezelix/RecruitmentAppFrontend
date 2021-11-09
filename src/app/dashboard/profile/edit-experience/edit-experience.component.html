@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-title>Edit Experience</mat-card-title>
+
+  <mat-card-content>
+    <app-form-experience (experienceSubmitted)="onSubmit($event)" [initValue]="experience"  *ngIf="experience"></app-form-experience>
+    <mat-spinner *ngIf="!experience"></mat-spinner>
+  </mat-card-content>
+
+</mat-card>

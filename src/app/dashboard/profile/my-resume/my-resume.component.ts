@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { NotifierService } from 'angular-notifier';
+import { catchError, switchMap } from 'rxjs/operators';
 import { ResumeModel } from 'src/app/shared/models/Resume.model';
+import { ErrorHandlingService } from '../../serivces/errorHandling.service';
 import { ResumeService } from '../../serivces/resume.service';
 
 @Component({
@@ -14,6 +17,8 @@ export class MyResumeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private resumeService: ResumeService,
+    private errorHandlingService: ErrorHandlingService,
+    private notifierService: NotifierService,
   ) { }
 
   ngOnInit(): void {
@@ -22,4 +27,16 @@ export class MyResumeComponent implements OnInit {
     ).subscribe(resume => this.resume = resume);
   }
 
+  onSubmit(event: { resume: ResumeModel, form: FormGroup }) {
+    console.log(event.resume);
+
+    this.resumeService.update(event.resume).pipe(
+      catchError((e) => this.errorHandlingService.handleValidationError(e, event.form)),
+    ).subscribe(
+      () => {
+        this.notifierService.notify('success', 'Resume added successfully');
+      },
+      () => this.notifierService.notify('error', 'Error during adding new Resume'),
+    );
+  }
 }

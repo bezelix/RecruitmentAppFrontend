@@ -1,0 +1,88 @@
+
+
+    <form [formGroup]="fb" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            [formControl]="nameCtrl"
+            placeholder="Name"
+          >
+          <mat-error *ngIf="nameCtrl.errors?.required">Name is required</mat-error>
+          <mat-error *ngIf="nameCtrl.errors?.apiError">{{nameCtrl.errors?.apiError}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Surname</mat-label>
+          <input
+            matInput
+            [formControl]="surnameCtrl"
+            placeholder="Surname"
+          >
+          <mat-error *ngIf="surnameCtrl.errors?.required">Surname is required</mat-error>
+          <mat-error *ngIf="surnameCtrl.errors?.apiError">{{surnameCtrl.errors?.apiError}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            name="city"
+            [formControl]="cityCtrl"
+            placeholder="City"
+          >
+          <mat-error *ngIf="cityCtrl.errors?.required">City is required</mat-error>
+          <mat-error *ngIf="cityCtrl.errors?.apiError">{{cityCtrl.errors?.apiError}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Birth date</mat-label>
+          <input matInput name="date" [matDatepicker]="picker" (click)="picker.open()" [formControl]="dateOfBirthCtrl"  [max]="maxDate">
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Seniority</mat-label>
+          <mat-select [formControl]="seniorityIdCtrl">
+            <mat-option [value]="seniority.id" *ngFor="let seniority of seniorities">{{seniority.name | uppercase}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select [formControl]="skillsCtrl" placeholder="Skills" #singleSelect multiple>
+            <mat-option>
+              <ngx-mat-select-search
+                [formControl]="skillsSearchCtrl"
+                placeholderLabel="Search your skill..."
+                noEntriesFoundLabel="No skills found"
+                ></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let skill of (filteredSkills$ | async)" [value]="skill">
+              {{skill.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          [formControl]="descriptionCtrl"
+          placeholder="Description"
+        ></textarea>
+        <mat-error *ngIf="descriptionCtrl.errors?.required">Description is required</mat-error>
+        <mat-error *ngIf="descriptionCtrl.errors?.apiError">{{descriptionCtrl.errors?.apiError}}</mat-error>
+      </mat-form-field>
+
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+      >Save</button>
+    </form>
