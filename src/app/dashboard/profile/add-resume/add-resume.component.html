@@ -55,7 +55,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select [formControl]="skillsIdCtrl" placeholder="Skills" #singleSelect>
+          <mat-select [formControl]="skillsCtrl" placeholder="Skills" #singleSelect multiple>
             <mat-option>
               <ngx-mat-select-search
                 [formControl]="skillsSearchCtrl"

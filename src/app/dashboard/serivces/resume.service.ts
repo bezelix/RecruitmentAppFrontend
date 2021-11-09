@@ -31,8 +31,13 @@ export class ResumeService {
   }
 
   save(resume: ResumeModel): Observable<ResumeModel> {
+    console.log(resume);
+    const data = {...resume, skillsId: resume.skills.map(r => r.id)};
+
+    delete data.skills;
+
     return this.http
-      .post<ResumeModel>(`${environment.apiUrl}resume`, resume)
+      .post<ResumeModel>(`${environment.apiUrl}resume`, data)
       .pipe(
         tap(console.log)
       );

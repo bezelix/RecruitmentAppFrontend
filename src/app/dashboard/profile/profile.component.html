@@ -10,7 +10,18 @@
 
     <ng-container *ngIf="(resumes$|async) as resumes">
       <mat-list role="list" *ngIf="resumes.items; else emptyResumes">
-        <mat-list-item role="listitem" *ngFor="let resume of resumes.items">{{resume.name}}</mat-list-item>
+        <mat-list-item role="listitem" *ngFor="let resume of resumes.items" [routerLink]="['/', 'dashboard', 'profile', 'myResume', resume.id]">
+          <h2 matLine>
+            <div class="main">Name: {{resume.name}} {{resume.surname}}</div>
+          </h2>
+          <p matLine class="subtitle">
+            <span class="city">City: {{resume.city }}</span>
+            <span class="skills">Skills: <span *ngFor="let skill of resume.skills" class="skill">{{skill.name}}</span></span>
+          </p>
+          <p matLine>
+            <span class="description">Description: {{resume.description }}</span>
+          </p>
+        </mat-list-item>
       </mat-list>
     </ng-container>
 

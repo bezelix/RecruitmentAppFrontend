@@ -1,6 +1,7 @@
 mat-list{
   mat-list-item{
     cursor: pointer;
+    border-radius: 4px;
     &:hover{
       background-color: #eee;
     }
@@ -24,4 +25,40 @@ mat-card-title{
   flex-flow: row;
   align-items: center;
   justify-content: space-between;
+}
+mat-list-item{
+  .subtitle,.description {
+    opacity: .65;
+  }
+  &:hover .subtitle,.description {
+    opacity: 1;
+  }
+  .main{
+    font-size: 16px;
+    font-size: 500;
+  }
+
+
+  .subtitle {
+    font-size: 14px;
+    display: flex;
+    flex-flow: row;
+
+    .city{
+      margin-right: 10px;
+    }
+
+    .skills {
+      display: block;
+      margin-right: 8px;
+      .skill{
+        margin-right: 4px;
+      }
+    }
+  }
+
+  span.description {
+    font-size: 12px;
+  }
+
 }

@@ -13,9 +13,8 @@ export class SkillService {
   }
 
   get(name?: string): Observable<SkillModel[]> {
-    const params = name && name.length ? new HttpParams().set('name', name) : new HttpParams();
     return this.http
-      .get<SkillModel[]>(`${environment.apiUrl}skills`, {params})
+      .post<SkillModel[]>(`${environment.apiUrl}skills`, {name})
       .pipe(
         tap(console.log)
       );

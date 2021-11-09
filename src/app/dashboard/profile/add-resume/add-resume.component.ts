@@ -37,7 +37,7 @@ export class AddResumeComponent implements OnInit, OnDestroy {
     description: new FormControl('', Validators.required),
     dateOfBirth: new FormControl('', Validators.required),
     seniorityId: new FormControl(null, Validators.required),
-    skillsId: new FormControl([], Validators.required),
+    skills: new FormControl([], Validators.required),
   });
 
   get nameCtrl() { return this.fb.get('name') as FormControl }
@@ -46,7 +46,7 @@ export class AddResumeComponent implements OnInit, OnDestroy {
   get descriptionCtrl() { return this.fb.get('description') as FormControl }
   get dateOfBirthCtrl() { return this.fb.get('dateOfBirth') as FormControl }
   get seniorityIdCtrl() { return this.fb.get('seniorityId') as FormControl }
-  get skillsIdCtrl() { return this.fb.get('skillsId') as FormControl }
+  get skillsCtrl() { return this.fb.get('skills') as FormControl }
 
   skillsSearchCtrl = new FormControl('');
   filteredSkills$: Observable<SkillModel[]> = this.skillService.get(this.skillsSearchCtrl.value);

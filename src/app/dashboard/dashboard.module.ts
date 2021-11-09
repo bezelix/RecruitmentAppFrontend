@@ -12,6 +12,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { ResumeFilterComponent } from './resume-list/resume-filter/resume-filter.component';
 import { AddResumeComponent } from './profile/add-resume/add-resume.component';
 import { AddExperienceComponent } from './profile/add-experience/add-experience.component';
+import { MyResumeComponent } from './profile/my-resume/my-resume.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { AddExperienceComponent } from './profile/add-experience/add-experience.
     ResumeFilterComponent,
     AddResumeComponent,
     AddExperienceComponent,
+    MyResumeComponent,
   ],
   imports: [
     DashboardRoutingModule,
